@@ -122,6 +122,14 @@ npm start
 
 For deployment on Fly.io, see `fly.toml` for configuration.
 
+## Documentation
+
+For detailed documentation on core concepts, see the [docs folder](./docs/table-of-content.md):
+
+- [Metadata Configuration](./docs/metadata.md)
+- [Route Handlers](./docs/handler.md)
+- [Dynamic Page Routes](./docs/dynamic-routes.md)
+
 ## License
 
 MIT
