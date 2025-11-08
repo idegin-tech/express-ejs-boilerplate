@@ -8,6 +8,7 @@ import fs from 'fs';
 import metadata from './site/app/metadata.js';
 import { DynamicRouter } from './lib/dynamic-router.js';
 import { logRoutes, createRouteDebugger } from './lib/route-utils.js';
+import { applySecurity } from './lib/security.js';
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -17,6 +18,7 @@ const rootDir = path.resolve(__dirname, '..');
 const app = express();
 const dynamicRouter = new DynamicRouter();
 
+applySecurity(app);
 logRoutes();
 
 app.set('view engine', 'ejs');

@@ -57,7 +57,7 @@ export class RouteManager {
     
     const templatePath = segments.length > 0 
       ? `app/${segments.join('/')}/page` 
-      : 'app/index';
+      : 'app/page';
 
     if (isDynamic) {
       pattern = '/' + segments.map(segment => {
