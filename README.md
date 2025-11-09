@@ -1,15 +1,20 @@
 
-# Ejs Express Boilerplate
 
-Ejs Express Boilerplate is a modern Express.js starter template using EJS, Bootstrap, and TypeScript. It features dynamic routing, layout support, and a clean project structure for rapid web development.
+![Cover Image](./docs/image.png)
+
+# Ejs Express Boilerplate
+Ejs Express Boilerplate is a modern Express.js starter template using EJS, Tailwind CSS, and TypeScript. It features Next.js-style nested layouts, dynamic file-based routing, and a clean project structure for rapid web development.
 
 ## Features
 
 - Express.js with TypeScript
-- EJS templating with layouts
-- Dynamic file-based routing
+- EJS templating with Next.js-style nested layouts
+- Dynamic file-based routing with `[param]` syntax
 - Metadata and SEO support
-- Easy asset management (images, CSS, fonts, etc.)
+- Static asset management via public directory
+- Hot-reloading with LiveReload
+- Security middleware (Helmet, Rate Limiting, HPP)
+- Tailwind CSS with custom color theming
 
 ## Getting Started
 
@@ -55,17 +60,25 @@ npm start
 │   ├── app.ts                # Express app setup
 │   ├── server.ts             # Server entry point
 │   ├── lib/                  # Routing and utilities
+│   │   ├── routes.ts         # Route manager and layout detection
+│   │   ├── dynamic-router.ts # Dynamic routing middleware
+│   │   ├── security.ts       # Security middleware
+│   │   └── livereload.ts     # Hot-reloading setup
 │   ├── types/                # TypeScript types
 │   └── site/
 │       ├── app/              # Page routes (file-based routing)
-│       │   ├── index.ejs     # Home page
+│       │   ├── layout.ejs    # Root layout (wraps all pages)
+│       │   ├── page.ejs      # Home page
+│       │   ├── handler.ts    # Home page data handler
 │       │   ├── about-us/     # About page
-│       │   ├── blog/         # Blog pages
+│       │   ├── contact-us/   # Contact page
 │       │   ├── services/     # Services pages
+│       │   │   ├── layout.ejs   # Services layout (wraps services routes)
+│       │   │   ├── page.ejs     # Services listing
+│       │   │   └── [slug]/      # Dynamic service detail pages
 │       │   └── ...
 │       ├── components/       # EJS partials (header, footer, etc.)
-│       ├── layout/           # Layout templates (default.ejs)
-│       └── public/           # Static assets (images, css, fonts, etc.)
+│       └── public/           # Static assets (images, CSS, JS, favicon, etc.)
 ├── package.json
 ├── tsconfig.json
 ├── Dockerfile
@@ -74,10 +87,17 @@ npm start
 
 ### Key Directories
 
-- **src/site/app/**: All route pages. Each folder or file represents a route. Dynamic routes use `[param]` syntax.
-- **src/site/components/**: EJS partials for reuse (header, footer, etc).
-- **src/site/layout/**: Layout templates. The default layout is `default.ejs`.
-- **src/site/public/**: Place all static assets here (images, CSS, fonts, etc). These are served at the root URL (e.g., `/image.jpg`).
+- **src/site/app/**: All route pages. Each folder represents a route. Dynamic routes use `[param]` syntax (e.g., `[slug]/`).
+- **src/site/app/layout.ejs**: Root layout that wraps all pages (includes HTML structure, Tailwind config, header, and footer).
+- **src/site/app/*/layout.ejs**: Nested layouts that add additional wrappers for specific route sections (e.g., services layout).
+- **src/site/components/**: Reusable EJS partials (header, footer, etc.).
+- **src/site/public/**: Static assets directory. All files here are served at the root URL.
+  - Images: `/image.png`, `/logo.svg`
+  - Stylesheets: `/styles.css`, `/custom.css`
+  - JavaScript: `/script.js`, `/app.js`
+  - Favicon: `/favicon.ico`
+  - Fonts: `/fonts/font-name.woff2`
+  - Any other static files
 
 ## Data Fetching, Injection, and Metadata
 
@@ -92,15 +112,104 @@ src/site/app/services/handler.ts
 src/site/app/services/page.ejs
 ```
 
-## Adding Assets
+## Layout System (Next.js-Style Nested Layouts)
 
-- Add images, CSS, fonts, and other static files to `src/site/public/`.
-- Reference them in your EJS templates using `/filename.ext` (e.g., `/image.jpg`, `/styles.css`).
+This boilerplate uses a Next.js-inspired nested layout system where layouts cascade from parent to child routes.
 
-## Customizing Layout
+### How It Works
 
-- The default layout is in `src/site/layout/default.ejs`.
-- You can create additional layouts as needed and set them per route.
+1. **Root Layout (`src/site/app/layout.ejs`)**: 
+   - Wraps ALL pages in your application
+   - Contains the HTML structure, `<head>`, Tailwind config, header, and footer
+   - Always rendered as the outermost wrapper
+
+2. **Nested Layouts (`src/site/app/*/layout.ejs`)**:
+   - Optional layouts for specific route segments
+   - Wrapped by the root layout
+   - Only affect routes within their directory and subdirectories
+
+### Example Layout Hierarchy
+
+```
+app/layout.ejs                    # Wraps everything
+  ├─ app/page.ejs                 # Home page (only root layout)
+  ├─ app/about-us/page.ejs        # About page (only root layout)
+  └─ app/services/layout.ejs      # Services layout
+      ├─ app/services/page.ejs    # Services listing (root + services layout)
+      └─ app/services/[slug]/page.ejs  # Service detail (root + services layout)
+```
+
+### Creating a Nested Layout
+
+To add a layout for a specific section (e.g., `/dashboard`):
+
+1. Create `src/site/app/dashboard/layout.ejs`:
+   ```html
+   <div class="dashboard-wrapper">
+     <aside><!-- Sidebar --></aside>
+     <main>
+       <%- body %>
+     </main>
+   </div>
+   ```
+
+2. The layout will automatically wrap all pages under `/dashboard/*`
+
+### Key Points
+
+- Layouts cascade: Root layout → Section layout → Page content
+- Each layout must include `<%- body %>` to render child content
+- The root layout (`app/layout.ejs`) is required and always used
+- Nested layouts are optional and route-specific
+
+## Adding Static Assets
+
+All static assets go in **`src/site/public/`** and are served at the root URL path.
+
+### Directory Structure
+
+```
+src/site/public/
+├── image.png              # Accessible at /image.png
+├── logo.svg               # Accessible at /logo.svg
+├── favicon.ico            # Accessible at /favicon.ico
+├── styles/
+│   └── custom.css         # Accessible at /styles/custom.css
+├── js/
+│   └── script.js          # Accessible at /js/script.js
+└── fonts/
+    └── custom-font.woff2  # Accessible at /fonts/custom-font.woff2
+```
+
+### Usage in EJS Templates
+
+```html
+<!-- Images -->
+<img src="/image.png" alt="Cover">
+<img src="/logo.svg" alt="Logo">
+
+<!-- CSS -->
+<link rel="stylesheet" href="/styles/custom.css">
+
+<!-- JavaScript -->
+<script src="/js/script.js"></script>
+
+<!-- Fonts in CSS -->
+@font-face {
+  font-family: 'CustomFont';
+  src: url('/fonts/custom-font.woff2') format('woff2');
+}
+
+<!-- Favicon -->
+<link rel="icon" href="/favicon.ico">
+```
+
+### Best Practices
+
+- Organize assets by type in subdirectories (images/, js/, css/, fonts/)
+- Use descriptive filenames
+- Optimize images before adding them
+- Reference assets with leading slash: `/path/to/asset`
 
 ## Environment Variables
 

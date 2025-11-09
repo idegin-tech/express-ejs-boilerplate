@@ -4,6 +4,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import ejsLayouts from 'express-ejs-layouts';
+import connectLiveReload from 'connect-livereload';
 import fs from 'fs';
 import metadata from './site/app/metadata.js';
 import { DynamicRouter } from './lib/dynamic-router.js';
@@ -18,13 +19,19 @@ const rootDir = path.resolve(__dirname, '..');
 const app = express();
 const dynamicRouter = new DynamicRouter();
 
+if (process.env.NODE_ENV === 'development') {
+  app.use(connectLiveReload());
+}
+
 applySecurity(app);
+
 logRoutes();
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(rootDir, 'src/site'));
 app.use(ejsLayouts);
-app.set('layout', 'layout/default');
+app.set('layout extractScripts', true);
+app.set('layout extractStyles', true);
 app.use(express.static(path.join(rootDir, 'src/site/public')));
 
 if (process.env.NODE_ENV === 'development') {

@@ -1,0 +1,31 @@
+<div class="relative w-full h-80 overflow-hidden mb-16">
+  <div class="absolute inset-0">
+    <img src="/image.jpeg" alt="Services Hero" class="w-full h-full object-cover">
+  </div>
+  <div class="absolute inset-0 bg-gradient-to-br from-primary/80 via-accent/70 to-secondary/80"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+  <div class="relative h-full flex items-center justify-center">
+    <div class="text-center max-w-4xl mx-auto px-4">
+      <div class="inline-block mb-4 animate-fade-in">
+        <span class="bg-white/20 backdrop-blur-sm border border-white/30 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-xl">✨ What We Do</span>
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold mb-4 text-white drop-shadow-2xl animate-fade-in" style="animation-delay: 0.1s;">Our Services</h1>
+      <p class="text-xl md:text-2xl text-white/95 max-w-2xl mx-auto drop-shadow-lg animate-fade-in" style="animation-delay: 0.2s;">Discover our comprehensive range of services designed to bring your vision to life</p>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent"></div>
+</div>
+
+<div class="container mx-auto px-4 pb-16">
+  <%- body %>
+</div>
+
+<style>
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out forwards;
+  }
+</style>

@@ -5,8 +5,8 @@
   "type": "module",
   "main": "dist/server.js",
   "scripts": {
-    "dev": "tsup \"src/**/*.ts\" --watch --format esm --onSuccess \"npx node dist/server.js\"",
-    "build": "tsup \"src/**/*.ts\" --format esm",
+    "dev": "tsup \"src/**/*.ts\" --watch --format esm --external livereload --external connect-livereload --onSuccess \"npx node dist/server.js\"",
+    "build": "tsup \"src/**/*.ts\" --format esm --external livereload --external connect-livereload",
     "start": "node dist/server.js",
     "clean": "rimraf dist",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -37,9 +37,13 @@
     "typescript": "^5.9.2"
   },
   "devDependencies": {
+    "@types/connect-livereload": "^0.6.3",
     "@types/express": "^5.0.3",
     "@types/express-ejs-layouts": "^2.5.4",
     "@types/hpp": "^0.2.7",
-    "@types/node": "^24.1.0"
+    "@types/livereload": "^0.9.5",
+    "@types/node": "^24.1.0",
+    "connect-livereload": "^0.6.1",
+    "livereload": "^0.10.3"
   }
 }

@@ -1,24 +1,21 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">EJS Express Boilerplate</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link<%= currentPath === '/' ? ' active' : '' %>" href="/">Home</a>
+<header class="border-b">
+  <nav class="container mx-auto px-4 py-4">
+    <div class="flex items-center justify-between">
+      <a href="/" class="text-xl font-bold text-primary">EJS Express Boilerplate</a>
+      <ul class="flex gap-6">
+        <li>
+          <a href="/" class="<%= currentPath === '/' ? 'text-primary font-semibold' : 'text-muted-foreground hover:text-foreground' %>">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link<%= currentPath === '/about-us' ? ' active' : '' %>" href="/about-us">About Us</a>
+        <li>
+          <a href="/about-us" class="<%= currentPath === '/about-us' ? 'text-primary font-semibold' : 'text-muted-foreground hover:text-foreground' %>">About Us</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link<%= currentPath.startsWith('/services') ? ' active' : '' %>" href="/services">Services</a>
+        <li>
+          <a href="/services" class="<%= currentPath.startsWith('/services') ? 'text-primary font-semibold' : 'text-muted-foreground hover:text-foreground' %>">Services</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link<%= currentPath === '/contact-us' ? ' active' : '' %>" href="/contact-us">Contact Us</a>
+        <li>
+          <a href="/contact-us" class="<%= currentPath === '/contact-us' ? 'text-primary font-semibold' : 'text-muted-foreground hover:text-foreground' %>">Contact Us</a>
         </li>
       </ul>
     </div>
-  </div>
-</nav>
+  </nav>
+</header>

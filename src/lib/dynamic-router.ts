@@ -48,6 +48,15 @@ export class DynamicRouter {
             if (result.metadata) res.locals.metadata = { ...res.locals.metadata, ...result.metadata };
           }
         }
+        
+        res.locals.layoutChain = route.layouts || [];
+        
+        if (route.layouts && route.layouts.length > 0) {
+          res.locals.layout = route.layouts[0];
+        } else {
+          res.locals.layout = false;
+        }
+        
         res.render(route.template);
       } catch (error) {
         console.error(`Error rendering template ${route.template}:`, error);

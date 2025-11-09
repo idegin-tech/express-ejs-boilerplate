@@ -10,6 +10,7 @@ interface Route {
   template: string;
   isDynamic: boolean;
   segments: string[];
+  layouts: string[];
 }
 
 export class RouteManager {
@@ -68,12 +69,34 @@ export class RouteManager {
       }).join('/');
     }
 
+    const layouts = this.findLayouts(segments);
+
     return {
       pattern,
       template: templatePath,
       isDynamic,
-      segments
+      segments,
+      layouts
     };
+  }
+
+  private findLayouts(segments: string[]): string[] {
+    const layouts: string[] = [];
+    
+    const rootLayoutPath = path.join(this.appDir, 'layout.ejs');
+    if (fs.existsSync(rootLayoutPath)) {
+      layouts.push('app/layout');
+    }
+    
+    for (let i = 1; i <= segments.length; i++) {
+      const segmentPath = segments.slice(0, i);
+      const layoutPath = path.join(this.appDir, ...segmentPath, 'layout.ejs');
+      if (fs.existsSync(layoutPath)) {
+        layouts.push(`app/${segmentPath.join('/')}/layout`);
+      }
+    }
+    
+    return layouts;
   }
 
   public getRoutes(): Route[] {

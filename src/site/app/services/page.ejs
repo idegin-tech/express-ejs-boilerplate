@@ -1,32 +1,28 @@
-<div class="container py-5">
-  <div class="text-center mb-5">
-    <h1 class="display-4 fw-bold text-primary">Our Services</h1>
-    <p class="lead text-muted">Comprehensive solutions for your business needs</p>
-  </div>
-  
-  <div class="row g-4">
+<div class="container mx-auto px-4 py-12">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     <% if (locals.services && locals.services.length > 0) { %>
       <% locals.services.forEach((service, index) => { %>
-        <div class="col-lg-4 col-md-6">
-          <div class="card h-100 shadow-sm border-0">
-            <div class="position-relative overflow-hidden">
-              <img src="<%= service.image %>" class="card-img-top" alt="<%= service.name %>" style="height: 250px; object-fit: cover;">
-            </div>
-            <div class="card-body text-center d-flex flex-column">
-              <h5 class="card-title fw-bold mb-3"><%= service.name %></h5>
-              <p class="card-text text-muted flex-grow-1"><%= service.description %></p>
-              <div class="mt-auto">
-                <a href="/services/<%= service.slug %>" class="btn btn-primary">Learn More</a>
-              </div>
-            </div>
+        <div class="group bg-card border-2 border-transparent rounded-xl overflow-hidden hover:border-primary hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+          <div class="relative h-56 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <img src="<%= service.image %>" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" alt="<%= service.name %>">
+          </div>
+          <div class="p-6 bg-gradient-to-br from-white to-muted/30">
+            <h3 class="text-2xl font-bold mb-3 text-primary group-hover:text-accent transition-colors"><%= service.name %></h3>
+            <p class="text-muted-foreground mb-6 line-clamp-3"><%= service.description %></p>
+            <a href="/services/<%= service.slug %>" class="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-primary to-accent px-6 py-3 text-sm font-semibold text-white hover:shadow-lg transition-all group-hover:scale-105">
+              Learn More
+              <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
           </div>
         </div>
       <% }) %>
     <% } else { %>
-      <div class="col-12">
-        <div class="text-center">
-          <p class="text-muted">No services available at the moment.</p>
-        </div>
+      <div class="col-span-full text-center py-20">
+        <div class="text-6xl mb-4">🎨</div>
+        <p class="text-xl text-muted-foreground">No services available at the moment.</p>
       </div>
     <% } %>
   </div>

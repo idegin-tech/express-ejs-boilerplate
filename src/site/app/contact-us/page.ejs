@@ -1,20 +1,152 @@
-<div class="row justify-content-center">
-  <div class="col-md-8">
-    <h2>Contact Us</h2>
-    <form method="post" action="#" class="mt-4">
-      <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" class="form-control" id="name" name="name" required>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<div class="relative py-20">
+  <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5"></div>
+  
+  <div class="relative container mx-auto px-4">
+    <div class="text-center mb-16">
+      <div class="inline-block mb-4">
+        <span class="bg-gradient-to-r from-primary to-accent text-white px-6 py-2 rounded-full text-sm font-semibold shadow-lg">📧 Get In Touch</span>
       </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" name="email" required>
+      <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">Contact Us</h1>
+      <p class="text-xl text-muted-foreground max-w-3xl mx-auto">Have a question or want to work together? We'd love to hear from you!</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+      <div class="group relative p-8 rounded-2xl border-2 border-primary/20 hover:border-primary transition-all hover:shadow-2xl bg-white">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mb-6 mx-auto text-white shadow-lg group-hover:scale-110 transition-transform">
+            <i class="fas fa-phone-alt text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-primary">Phone</h3>
+          <p class="text-muted-foreground mb-2">+1 (555) 123-4567</p>
+          <p class="text-muted-foreground">Mon-Fri 9am-6pm</p>
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="message" class="form-label">Message</label>
-        <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+      <div class="group relative p-8 rounded-2xl border-2 border-accent/20 hover:border-accent transition-all hover:shadow-2xl bg-white">
+        <div class="absolute inset-0 bg-gradient-to-br from-accent/5 to-secondary/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-accent to-secondary rounded-full flex items-center justify-center mb-6 mx-auto text-white shadow-lg group-hover:scale-110 transition-transform">
+            <i class="fas fa-envelope text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-accent">Email</h3>
+          <p class="text-muted-foreground mb-2">hello@example.com</p>
+          <p class="text-muted-foreground">24/7 Support</p>
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary">Send Message</button>
-    </form>
+      <div class="group relative p-8 rounded-2xl border-2 border-secondary/20 hover:border-secondary transition-all hover:shadow-2xl bg-white">
+        <div class="absolute inset-0 bg-gradient-to-br from-secondary/5 to-primary/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center mb-6 mx-auto text-white shadow-lg group-hover:scale-110 transition-transform">
+            <i class="fas fa-map-marker-alt text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-secondary-foreground">Location</h3>
+          <p class="text-muted-foreground mb-2">123 Business Street</p>
+          <p class="text-muted-foreground">San Francisco, CA 94107</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+      <div>
+        <div class="bg-white p-10 rounded-2xl shadow-2xl border-2 border-primary/10">
+          <h2 class="text-3xl font-bold mb-6 text-primary">Send us a Message</h2>
+          <form method="post" action="#" class="space-y-6">
+            <div>
+              <label for="name" class="block text-sm font-semibold mb-2 text-foreground">Your Name</label>
+              <div class="relative">
+                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground">
+                  <i class="fas fa-user"></i>
+                </span>
+                <input type="text" class="w-full pl-12 pr-4 py-3 border-2 border-input rounded-lg bg-background focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="name" name="name" placeholder="John Doe" required>
+              </div>
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-semibold mb-2 text-foreground">Email Address</label>
+              <div class="relative">
+                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground">
+                  <i class="fas fa-envelope"></i>
+                </span>
+                <input type="email" class="w-full pl-12 pr-4 py-3 border-2 border-input rounded-lg bg-background focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="email" name="email" placeholder="john@example.com" required>
+              </div>
+            </div>
+            <div>
+              <label for="subject" class="block text-sm font-semibold mb-2 text-foreground">Subject</label>
+              <div class="relative">
+                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground">
+                  <i class="fas fa-tag"></i>
+                </span>
+                <input type="text" class="w-full pl-12 pr-4 py-3 border-2 border-input rounded-lg bg-background focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="subject" name="subject" placeholder="How can we help?" required>
+              </div>
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-semibold mb-2 text-foreground">Message</label>
+              <textarea class="w-full px-4 py-3 border-2 border-input rounded-lg bg-background focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="message" name="message" rows="5" placeholder="Tell us more about your project..." required></textarea>
+            </div>
+            <button type="submit" class="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-primary to-accent px-8 py-4 text-base font-semibold text-white hover:shadow-2xl transition-all transform hover:scale-105">
+              <i class="fas fa-paper-plane mr-2"></i>
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="space-y-8">
+        <div class="bg-white p-8 rounded-2xl shadow-xl border-2 border-accent/10">
+          <h3 class="text-2xl font-bold mb-4 text-accent">Office Hours</h3>
+          <div class="space-y-3">
+            <div class="flex items-center text-muted-foreground">
+              <i class="fas fa-clock text-accent mr-3 w-5"></i>
+              <div>
+                <p class="font-semibold text-foreground">Monday - Friday</p>
+                <p>9:00 AM - 6:00 PM</p>
+              </div>
+            </div>
+            <div class="flex items-center text-muted-foreground">
+              <i class="fas fa-clock text-accent mr-3 w-5"></i>
+              <div>
+                <p class="font-semibold text-foreground">Saturday</p>
+                <p>10:00 AM - 4:00 PM</p>
+              </div>
+            </div>
+            <div class="flex items-center text-muted-foreground">
+              <i class="fas fa-clock text-accent mr-3 w-5"></i>
+              <div>
+                <p class="font-semibold text-foreground">Sunday</p>
+                <p>Closed</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-xl border-2 border-secondary/10">
+          <h3 class="text-2xl font-bold mb-4 text-secondary-foreground">Follow Us</h3>
+          <div class="flex gap-4">
+            <a href="#" class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform shadow-lg">
+              <i class="fab fa-facebook-f text-lg"></i>
+            </a>
+            <a href="#" class="w-12 h-12 bg-gradient-to-br from-accent to-secondary rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform shadow-lg">
+              <i class="fab fa-twitter text-lg"></i>
+            </a>
+            <a href="#" class="w-12 h-12 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform shadow-lg">
+              <i class="fab fa-linkedin-in text-lg"></i>
+            </a>
+            <a href="#" class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform shadow-lg">
+              <i class="fab fa-instagram text-lg"></i>
+            </a>
+          </div>
+        </div>
+        <div class="relative h-64 rounded-2xl overflow-hidden shadow-xl border-2 border-primary/10">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0157878624087!2d-122.41941528468183!3d37.77492977975903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c6c8f4459%3A0xb10ed6d9b5050fa5!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1699564789123!5m2!1sen!2sus" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,15 +1,38 @@
-<div class="container py-4">
-    <div class="text-center">
-        <img src="/image.jpg" class="rounded-circle" />
-        <h1 class="display-4 mb-4">Welcome to EJS Express Boilerplate</h1>
-        <p class="lead">
-            A modern Express.js starter with EJS, Bootstrap, and TypeScript.
-        </p>
-        <a href="/about-us" class="btn btn-primary btn-lg mt-3">Learn More</a>
-
-        <script>
-            console.log("Welcome to EJS Express Boilerplate!");
-        </script>
+<div class="relative h-screen flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-primary via-accent to-secondary opacity-90"></div>
+  <div class="absolute inset-0 bg-gradient-to-tr from-purple-600/30 via-pink-500/30 to-yellow-400/30"></div>
+  <div class="absolute inset-0">
+    <img src="/image.jpeg" alt="Hero Background" class="w-full h-full object-cover mix-blend-overlay opacity-20">
+  </div>
+  <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
+    <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-white drop-shadow-lg animate-fade-in">
+      <%= locals.heading %>
+    </h1>
+    <p class="text-xl md:text-2xl text-white/90 mb-8 drop-shadow-md">
+      <%= locals.subHeading %>
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/services" class="inline-flex items-center justify-center rounded-lg bg-white text-primary px-8 py-4 text-lg font-semibold hover:bg-white/90 transition-all shadow-xl hover:shadow-2xl hover:scale-105">
+        Explore Services
+      </a>
+      <a href="/contact-us" class="inline-flex items-center justify-center rounded-lg bg-primary/20 backdrop-blur-sm border-2 border-white text-white px-8 py-4 text-lg font-semibold hover:bg-primary/30 transition-all">
+        Get in Touch
+      </a>
     </div>
-
+  </div>
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+    </svg>
+  </div>
 </div>
+
+<style>
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fade-in 1s ease-out;
+  }
+</style>

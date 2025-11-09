@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= locals.metadata?.title || 'EJS Express Boilerplate' %></title>
+  <% if (locals.metadata?.description) { %>
+  <meta name="description" content="<%= locals.metadata.description %>">
+  <% } %>
+  <% if (locals.metadata?.keywords) { %>
+  <meta name="keywords" content="<%= locals.metadata.keywords.join(', ') %>">
+  <% } %>
+
+  <!-- Remove this Tailwind if you want to use custom templates  -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            border: "hsl(280 5% 84%)",
+            input: "hsl(280 5% 84%)",
+            ring: "hsl(280 65% 60%)",
+            background: "hsl(0 0% 100%)",
+            foreground: "hsl(280 10% 10%)",
+            primary: {
+              DEFAULT: "hsl(280 65% 60%)",
+              foreground: "hsl(0 0% 100%)",
+            },
+            secondary: {
+              DEFAULT: "hsl(45 100% 51%)",
+              foreground: "hsl(280 10% 10%)",
+            },
+            destructive: {
+              DEFAULT: "hsl(0 84.2% 60.2%)",
+              foreground: "hsl(0 0% 100%)",
+            },
+            muted: {
+              DEFAULT: "hsl(280 10% 95%)",
+              foreground: "hsl(280 5% 40%)",
+            },
+            accent: {
+              DEFAULT: "hsl(330 81% 60%)",
+              foreground: "hsl(0 0% 100%)",
+            },
+            popover: {
+              DEFAULT: "hsl(0 0% 100%)",
+              foreground: "hsl(280 10% 10%)",
+            },
+            card: {
+              DEFAULT: "hsl(0 0% 100%)",
+              foreground: "hsl(280 10% 10%)",
+            },
+          },
+          borderRadius: {
+            lg: "0.5rem",
+            md: "calc(0.5rem - 2px)",
+            sm: "calc(0.5rem - 4px)",
+          },
+        },
+      },
+    }
+  </script>
+  <!-- ======== Tailwind config end =========== -->
+
+</head>
+<body class="min-h-screen bg-background text-foreground">
+  <%- include('../components/header') %>
+  <main class="flex-1">
+    <% if (locals.layoutChain && locals.layoutChain.length > 1) { %>
+      <%- include('../' + locals.layoutChain[1], { body: body }) %>
+    <% } else { %>
+      <%- body %>
+    <% } %>
+  </main>
+  <%- include('../components/footer') %>
+</body>
+</html>
