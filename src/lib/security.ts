@@ -6,7 +6,7 @@ import hpp from 'hpp';
 export function applySecurity(app: Application) {
   // Helmet: Security headers
   const isDevelopment = process.env.NODE_ENV === 'development';
-  
+
   app.use(helmet({
     contentSecurityPolicy: isDevelopment ? false : {
       directives: {
@@ -20,24 +20,24 @@ export function applySecurity(app: Application) {
     },
   }));
 
-  // Rate limiting: Prevent brute force attacks
   const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // Limit each IP to 100 requests per windowMs
+    windowMs: 15 * 60 * 1000,
+    max: 100,
     standardHeaders: true,
     legacyHeaders: false,
     message: 'Too many requests from this IP, please try again later.',
   });
-  app.use(limiter);
 
-  // Strict rate limit for sensitive routes
+  if (process.env.NODE_ENV === 'production') {
+    app.use(limiter);
+  }
+
   const strictLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 5,
     message: 'Too many attempts, please try again later.',
   });
-  app.use('/api/auth', strictLimiter); // Apply to auth routes if added
+  app.use('/api/auth', strictLimiter);
 
-  // HTTP Parameter Pollution protection
   app.use(hpp());
 }
