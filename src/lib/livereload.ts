@@ -1,7 +1,7 @@
-import livereload from 'livereload';
 import path from 'path';
 
-export function createLiveReloadServer() {
+export async function createLiveReloadServer() {
+    const { default: livereload } = await import('livereload');
     const rootDir = process.cwd();
 
     const liveReloadServer = livereload.createServer({
