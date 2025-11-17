@@ -3,12 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= locals.metadata?.title || 'EJS Express Boilerplate' %></title>
+
+  <title>
+    <%= locals.metadata?.title || 'The Plug Afrique' %>
+  </title>
   <% if (locals.metadata?.description) { %>
-  <meta name="description" content="<%= locals.metadata.description %>">
+    <meta name="description" content="<%= locals.metadata.description %>">
   <% } %>
   <% if (locals.metadata?.keywords) { %>
-  <meta name="keywords" content="<%= locals.metadata.keywords.join(', ') %>">
+    <meta name="keywords" content="<%= locals.metadata.keywords.join(', ') %>">
+  <% } %>
+
+  <!-- Open Graph / Social Media Meta Tags -->
+  <% if (locals.metadata?.og) { %>
+    <meta property="og:type" content="<%= locals.metadata.og.type || 'website' %>">
+    <% if (locals.metadata.og.url) { %>
+      <meta property="og:url" content="<%= locals.metadata.og.url %>">
+    <% } %>
+    <meta property="og:title" content="<%= locals.metadata.og.title || locals.metadata.title %>">
+    <meta property="og:description" content="<%= locals.metadata.og.description || locals.metadata.description %>">
+    <% if (locals.metadata.og.image) { %>
+      <meta property="og:image" content="<%= locals.metadata.og.image %>">
+    <% } %>
+  <% } %>
+
+  <!-- Twitter Meta Tags -->
+  <% if (locals.metadata?.twitter) { %>
+    <meta property="twitter:card" content="<%= locals.metadata.twitter.card || 'summary' %>">
+    <% if (locals.metadata.twitter.url) { %>
+      <meta property="twitter:url" content="<%= locals.metadata.twitter.url %>">
+    <% } %>
+    <meta property="twitter:title" content="<%= locals.metadata.twitter.title || locals.metadata.title %>">
+    <meta property="twitter:description" content="<%= locals.metadata.twitter.description || locals.metadata.description %>">
+    <% if (locals.metadata.twitter.image) { %>
+      <meta property="twitter:image" content="<%= locals.metadata.twitter.image %>">
+    <% } %>
   <% } %>
 
   <!-- Remove this Tailwind if you want to use custom templates  -->
