@@ -35,9 +35,9 @@ export class DynamicRouter {
         
         if (handlerPath) {
           try {
-            handler = (await import(handlerPath)).default;
-          } catch (error) {
-            console.log(`Handler not found: ${handlerPath}`);
+            const module = await import(handlerPath);
+            handler = module.default;
+          } catch {
           }
         }
         
@@ -46,6 +46,11 @@ export class DynamicRouter {
           if (result && typeof result === 'object') {
             if (result.data) Object.assign(res.locals, result.data);
             if (result.metadata) res.locals.metadata = { ...res.locals.metadata, ...result.metadata };
+            Object.keys(result).forEach(key => {
+              if (key !== 'data' && key !== 'metadata') {
+                res.locals[key] = result[key];
+              }
+            });
           }
         }
         
